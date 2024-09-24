@@ -1,101 +1,90 @@
-import Image from "next/image";
+import type { Metadata } from "next";
+import { CardProductItem } from "@/core/presentation/ui/components/CardProductItem";
+import { MiniCard } from "@/core/presentation/ui/components/MiniCard";
+import MainBanner from "@/core/presentation/ui/components/MainBanner";
+import MainPageImg from "@/app/images/main-page-img1.jpg"
+import MainPageImg2 from "@/app/images/main-page-img2.jpeg"
+import MainPageImg3 from "@/app/images/main-page-img3.webp"
+import MainPageImg4 from "@/app/images/main-page-img4.jpg"
+import MainPageImg5 from "@/app/images/main-page-img5.webp"
+import { RefreshCcw, Truck, Headset } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Home",
+  description: "Home description",
+};
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="flex-grow">
+      <MainBanner />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      <h1 className="text-3xl font-bold text-gray-900 mb-8 mt-8">
+        Some of our products
+      </h1>
+
+      <div className="flex-row grid grid-cols-1 md:grid-cols-3  sm:grid-cols-2 lg:grid-cols-4 w-full h-full gap-5 justify-center">
+        <CardProductItem
+          productId={1}
+          title="Toys"
+          address="Toys Inc."
+          isProductInCart={false}
+          image={MainPageImg4}
+          isDemo={true}
+        />
+        <CardProductItem
+          productId={2}
+          title="Jewerly"
+          address="Jewerly Inc"
+          isProductInCart={false}
+          image={MainPageImg2}
+          isDemo={true}
+        />
+        <CardProductItem
+          productId={1}
+          title="kitchen utensils"
+          address="utensils"
+          image={MainPageImg3}
+          isProductInCart={false}
+          isDemo={true}
+        />
+        <CardProductItem
+          productId={1}
+          title="Tech Gadgetss"
+          address="Great tech Gadgetss"
+          isProductInCart={false}
+          isDemo={true}
+          image={MainPageImg}
+        />
+        <CardProductItem
+          productId={1}
+          title="Shoess"
+          address="best shoes"
+          isProductInCart={false}
+          image={MainPageImg5}
+          isDemo={true}
+        />
+      </div>
+
+      <h1 className="text-3xl font-bold text-gray-900 mb-8 mt-8">Benefits</h1>
+
+      <div className="flex flex-wrap flex-row w-full h-full gap-5 justify-center">
+        <MiniCard
+          icon={Truck}
+          text="Free Shipping"
+          description="On order over $100"
+        />
+        <MiniCard
+          icon={RefreshCcw}
+          text="Easy Returns"
+          description="30-day return policy"
+        />
+        <MiniCard
+          icon={Headset}
+          text="24/7 Support"
+          description="Here to help anytime"
+        />
+      </div>
     </div>
   );
 }

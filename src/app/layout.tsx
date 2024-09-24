@@ -1,3 +1,4 @@
+import MainLayout from "@/core/presentation/ui/components/MainLayout";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -20,15 +21,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased w-screen h-screen relative bg-red-300`}
       >
-        {children}
+        <MainLayout>
+          {children}
+        </MainLayout>
       </body>
     </html>
   );
