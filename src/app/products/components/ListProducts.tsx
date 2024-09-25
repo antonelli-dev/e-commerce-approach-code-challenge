@@ -11,13 +11,15 @@ interface Props {
 }
 
 export const ListProducts = ({ products }: Props) => {
+ 
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isMounted, setIsMounted] = useState<boolean>(false);
-
   const { removeCartItem, hasProductInCart } = useCartStore();
 
   const handleAddToCartButton = (product: Product) => {
-    setSelectedProduct(product);
+    
+      setSelectedProduct(product);
+    
   };
 
   const onProductAdded = () => {
@@ -29,10 +31,9 @@ export const ListProducts = ({ products }: Props) => {
     setSelectedProduct(null);
   };
 
-  useEffect( () => {
-    setIsMounted(true)
-  }, [])
-  
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3  sm:grid-cols-2 lg:grid-cols-4 gap-5 w-full h-full">
