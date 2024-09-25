@@ -66,9 +66,14 @@ describe("ProductModal Component", () => {
       <ProductModal isOpen={true} product={mockProduct} onClose={jest.fn()} />
     );
 
-    const addButton = container.querySelector("button");
-    fireEvent.click(addButton!);
+    const getAllButton = Array.from(container.querySelectorAll("button"));
+    const addButtonToCart = getAllButton.find(
+      (button) => button.textContent == "Add To Cart"
+    );
 
+    if (addButtonToCart) {
+      fireEvent.click(addButtonToCart);
+    }
     expect(mockAddCartItem).toHaveBeenCalledTimes(1);
   });
 });

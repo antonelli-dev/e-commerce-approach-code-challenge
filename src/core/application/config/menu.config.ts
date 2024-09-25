@@ -1,5 +1,6 @@
+import { ShoppingCart } from "lucide-react";
 export interface MenuItem {
-  name: string;
+  name: string | React.ComponentType<React.SVGProps<SVGSVGElement>>;
   path: string;
 }
 
@@ -19,5 +20,9 @@ export const menuConfig: MenuItem[] = [
   {
     name: "OrderStatus",
     path: "/users/orderstatus",
+  },
+  {
+    name: ShoppingCart,
+    path: "/cart",
   },
 ];

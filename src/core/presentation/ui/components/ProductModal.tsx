@@ -1,20 +1,20 @@
 "use client";
 
 import { Button } from "./Button";
-import { useState } from "react";
-import { Plus, Minus } from "lucide-react";
+import { useState, MouseEventHandler } from "react";
+import { Plus, Minus, XIcon } from "lucide-react";
 import { useCartStore } from "@/core/application/store/cart.store";
 import { CartItem } from "@/core/domain/value-objects/cart-item.value-object";
 import { Product } from "@/core/domain/entities/Product";
 
 interface ProductModalProps {
   isOpen: boolean;
-  onClose: () => void;
+  onClose: MouseEventHandler<SVGSVGElement>;
   onAddedProduct?: (product: Product, quantity: number) => void;
   product: Product;
 }
 
-const ProductModal = ({ isOpen, product, onAddedProduct }: ProductModalProps) => {
+const ProductModal = ({ isOpen, product, onAddedProduct, onClose }: ProductModalProps) => {
  
   const { addCartItem, modifyQuantity, cart } = useCartStore();
   const [quantity, setQuantity] = useState<number>(1);
@@ -49,6 +49,11 @@ const ProductModal = ({ isOpen, product, onAddedProduct }: ProductModalProps) =>
       } inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50`}
     >
       <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+        <div className="flex flex-row justify-end">
+          <button>
+            <XIcon color="black" onClick={onClose}></XIcon>
+          </button>
+        </div>
         <h2 className="text-2xl font-bold mb-4 text-black">{product.title}</h2>
         <p className="mb-2 text-gray-600">{product.description}</p>
         <p className="text-lg font-semibold text-gray-700">

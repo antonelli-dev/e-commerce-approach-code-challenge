@@ -31,6 +31,10 @@ export const ListProducts = ({ products }: Props) => {
     setSelectedProduct(null);
   };
 
+  const handleCloseModal = () => {
+    setSelectedProduct(null);
+  }
+
   useEffect(() => {
     setIsMounted(true);
   }, []);
@@ -56,7 +60,7 @@ export const ListProducts = ({ products }: Props) => {
           product={selectedProduct}
           isOpen={selectedProduct != null}
           onAddedProduct={onProductAdded}
-          onClose={() => this}
+          onClose={() => handleCloseModal()}
         />
       )}
     </div>

@@ -32,7 +32,7 @@ export const CardProductItem = ({
       <div className="bg-slate-500 rounded-t-lg h-60">
         <Image
           src={image || ""}
-          alt={image ? title : ""}
+          alt={image ? title : "no image available"}
           className="w-full h-full"
           width="100"
           height="100"
