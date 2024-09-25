@@ -16,33 +16,39 @@ export const MobileMenu = () => {
           <AlignJustify color="black" />
         </button>
       </div>
-      {isOpen && <div
-        className={`md:hidden absolute bg-white z-50 h-full ${
-          isOpen ? "sm:w-[200px]" : "w-0"
-        } right-0 top-0 border-l-2 border-opacity-5 transition-[width] duration-500 ease-in-out`}
-      >
-        <div className="p-5">
-          <div className="text-right items-end">
-            <button onClick={() => setIsOpen(false)}className="absolute" >
-              <XIcon className="hover:text-blue-600 text-black font-bold"></XIcon>
-            </button>
-          </div>
+      {isOpen && (
+        <div
+          className={`md:hidden absolute bg-white z-50 h-full ${
+            isOpen ? "sm:w-[200px]" : "w-0"
+          } right-0 top-0 border-l-2 border-opacity-5 transition-[width] duration-500 ease-in-out`}
+        >
+          <div className="p-5">
+            <div className="text-right items-end">
+              <button onClick={() => setIsOpen(false)} className="absolute">
+                <XIcon className="hover:text-blue-600 text-black font-bold"></XIcon>
+              </button>
+            </div>
 
-          <div className="flex flex-col gap-5">
-            {menuConfig.map((navBarElement, index) => {
-              return (
-                <Link
-                  href={navBarElement.path}
-                  className="text-gray-500 transition-all duration-300 ease-in-out hover:text-gray-700 text-sm font-medium transform hover:scale-110 hover:underline hover:underline-offset-4"
-                  key={index}
-                >
-                  {navBarElement.name}
-                </Link>
-              );
-            })}
+            <div className="flex flex-col gap-5">
+              {menuConfig.map((navBarElement, index) => {
+                return (
+                  <Link
+                    href={navBarElement.path}
+                    className="text-gray-500 transition-all duration-300 ease-in-out hover:text-gray-700 text-sm font-medium transform hover:scale-110 hover:underline hover:underline-offset-4 flex items-center space-x-1"
+                    key={index}
+                  >
+                    {typeof navBarElement.name === "string" ? (
+                      <span>{navBarElement.name}</span>
+                    ) : (
+                      <navBarElement.name className="w-5 h-5" />
+                    )}
+                  </Link>
+                );
+              })}
+            </div>
           </div>
         </div>
-      </div>}
+      )}
     </>
   );
 };
