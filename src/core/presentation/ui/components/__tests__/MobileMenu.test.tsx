@@ -1,67 +1,71 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { MobileMenu } from "../MobileMenu"; 
+import { MobileMenu } from "../MobileMenu";
 
-jest.mock('@/core/application/config/menu.config', () => ({
+jest.mock("@/core/application/config/menu.config", () => ({
   menuConfig: [
-    { name: 'Home', path: '/' },
-    { name: 'About', path: '/about' },
-    { name: 'Contact', path: '/contact' },
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
+    { name: "Contact", path: "/contact" },
   ],
 }));
 
-describe('MobileMenu Component', () => {
-  it('opens the menu when clicking the hamburger icon', () => {
+describe("MobileMenu Component", () => {
+  it("opens the menu when clicking the hamburger icon", () => {
     render(<MobileMenu />);
 
-    const openButton = screen.getByRole('button');
+    const openButton = screen.getByRole("button");
     fireEvent.click(openButton);
 
-    const homeLink = screen.getByText('Home');
+    const homeLink = screen.getByText("Home");
     expect(homeLink).toBeInTheDocument();
   });
 
-  it('closes the menu when clicking the XIcon', () => {
+  it("closes the menu when clicking the XIcon", () => {
     render(<MobileMenu />);
 
-    const openButton = screen.getByRole('button');
+    const openButton = screen.getByRole("button");
     fireEvent.click(openButton);
 
-  
-    expect(screen.getByText('Home')).toBeInTheDocument();
+    expect(screen.getByText("Home")).toBeInTheDocument();
 
-    const closeButton = screen.getAllByRole('button')[1];
+    const closeButton = screen.getAllByRole("button")[1];
     fireEvent.click(closeButton);
 
-    expect(screen.queryByText('Home')).not.toBeInTheDocument();
+    expect(screen.queryByText("Home")).not.toBeInTheDocument();
   });
 
-  it('renders the correct number of links', () => {
+  it("renders the correct number of links", () => {
     render(<MobileMenu />);
 
-    const openButton = screen.getByRole('button');
+    const openButton = screen.getByRole("button");
     fireEvent.click(openButton);
 
-    const links = screen.getAllByRole('link');
-    expect(links.length).toBe(3); 
+    const links = screen.getAllByRole("link");
+    expect(links.length).toBe(3);
   });
 
-  it('renders the correct href and text for each link', () => {
-    render(<MobileMenu />);
+  it("renders the correct href and text for each link", () => {
+    const { container } = render(<MobileMenu />);
 
-    const openButton = screen.getByRole('button');
-    fireEvent.click(openButton);
+    const elementsArray = container.querySelectorAll("a");
 
-    const homeLink = screen.getByText('Home');
-    expect(homeLink).toBeInTheDocument();
-    expect(homeLink).toHaveAttribute('href', '/');
+    elementsArray.forEach((element) => {
+      const spanValue = element.querySelector("span")?.textContent;
 
-    const aboutLink = screen.getByText('About');
-    expect(aboutLink).toBeInTheDocument();
-    expect(aboutLink).toHaveAttribute('href', '/about');
-
-    const contactLink = screen.getByText('Contact');
-    expect(contactLink).toBeInTheDocument();
-    expect(contactLink).toHaveAttribute('href', '/contact');
+      switch (spanValue) {
+        case "Home":
+          expect(element).toHaveAttribute("href", "/");
+          break;
+        case "About":
+          expect(element).toHaveAttribute("href", "/about");
+          break;
+        case "Contact":
+          expect(element).toHaveAttribute("href", "/contact");
+          break;
+        default:
+          throw new Error(`Unexpected link text: ${spanValue}`);
+      }
+    });
   });
 });
